@@ -6,10 +6,17 @@ const latinVersion =     ['a', 'b', 'v', 'h', 'd', 'je', 'jo', 'ž', 'z', 'i', '
 const latinAdition = [ 'ł', 'ń', 'ś', 'š', 'dz', 'dź','dž', 'ź']
 
 class Lacinka {
-  constructor(htmlString) {
-    this.cyrilicAlpabet = ['а', ]
-    this.htmlString = htmlString;
+  constructor() {
     this.specialSymbolPattern = new RegExp(/[~`!#$%\^&*+=\-\[\]\\';,./{}|\\":<>\?]/);
+    this.latinPattern = new RegExp(/[A-z\u00C0-\u00ff]+/g);
+    this.cyrillicPattern = new RegExp(/[\u0400-\u04FF]/);
+
+    let textNodes = this.getTextNodes();
+
+    textNodes.forEach((textNode, i) => {
+      // console.log(textNode.textContent);
+      textNode.nodeValue = this.latinizeStr(textNode.textContent);
+    });
   }
 
   latinizeStr(cyrillicStr) {
@@ -23,49 +30,66 @@ class Lacinka {
     return latinStr;
   }
 
-
-
   latinizeSymbol(symbol) {
     let symbolType = this.getSymbolType(symbol);
 
-    if (symbolType  === 'number') {
+    if (!this.cyrillicPattern.test(symbol)) {
       return symbol;
     }
-    else if (symbolType === 'special-symbol') {
-      return symbol;
-    }
+
+    // if (symbolType  === 'number') {
+    //   return symbol;
+    // }
+    // else if (symbolType === 'special-symbol') {
+    //   return symbol;
+    // }
     else if (symbolType  === 'upper') {
-      return this.capitalizeFirstLetter(latinVersion[cyrillicAlphabet.indexOf(symbol.toLowerCase())]);
+      let alphabetIndex = cyrillicAlphabet.indexOf(symbol.toLowerCase());
+      return this.capitalizeFirstLetter(latinVersion[alphabetIndex])
+      // return this.capitalizeFirstLetter(latinVersion[]);
     }
     else if (symbolType  === 'lower') {
-      if (latinVersion[cyrillicAlphabet.indexOf(symbol)] === undefined) {
-        throw 'Unknown symbol in cyrillicAlphabet';
-      } else {
+      // if (latinVersion[cyrillicAlphabet.indexOf(symbol)] === undefined) {
+      //   throw 'Unknown symbol in cyrillicAlphabet';
+      // } else {
         return latinVersion[cyrillicAlphabet.indexOf(symbol)];
-      }
+      // }
 
     } else {
       console.log('unknown symbol detected: ' + symbol);
     }
   }
 
+
+
   getSymbolType(symbol) {
     if (!isNaN(symbol * 1)) {
-      console.log('number: ' + symbol);
+      // console.log('number: ' + symbol);
       return 'number';
     } else if (this.specialSymbolPattern.test(symbol)) {
       return 'special-symbol';
     }
     else {
       if (symbol == symbol.toUpperCase()) {
-          console.log('upper case true: ' + symbol);
+          // console.log('upper case true: ' + symbol);
           return 'upper';
       }
       if (symbol == symbol.toLowerCase()) {
-          console.log('lower case true: ' + symbol);
+          // console.log('lower case true: ' + symbol);
           return 'lower';
       }
     }
+  }
+
+  getTextNodes() {
+    var n,
+        a = [],
+        walk = document.createTreeWalker( document.body,NodeFilter.SHOW_TEXT,null,false);
+
+    while ( n = walk.nextNode()) {
+      a.push(n);
+    }
+    return a;
   }
 
   capitalizeFirstLetter(str) {
@@ -75,6 +99,19 @@ class Lacinka {
 
 }
 
-var latinizator = new Lacinka(exampleString);
 
-console.log(latinizator.latinizeStr(exampleString))
+// class Browser {
+//   constructor() {
+//
+//   }
+// }
+
+window.addEventListener('load', function() {
+  const latinizator = new Lacinka();
+  // let textNodes = latinizator.textNodesUnder();
+
+});
+
+
+
+// console.log(latinizator.latinizeStr(exampleString))
