@@ -1,0 +1,70 @@
+/*@border: 1px solid fade(@bordercolor, 15%);*/
+/*@invertborder: 1px solid fade(@background, 15%);*/
+.gradient-black {
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.65)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#a6000000', GradientType=0);
+  /* IE6-9 */
+}
+/* Typography */
+.row {
+  margin-right: -10px;
+  margin-left: -10px;
+  *zoom: 1;
+}
+.row:before,
+.row:after {
+  display: table;
+  content: "";
+}
+.row:after {
+  clear: both;
+}
+.row.wide {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+.row.narrow {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.row.flat {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+*[class*="col-"],
+.col {
+  padding-right: 10px;
+  padding-left: 10px;
+  float: left;
+  min-height: 1px;
+}
+*[class*="col-"].wide,
+.col.wide {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+*[class*="col-"].narrow,
+.col.narrow {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+*[class*="col-"].flat,
+.col.flat {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+*[class*="col-"].right,
+.col.right {
+  float: right;
+}

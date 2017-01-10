@@ -1,0 +1,44 @@
+/* 
+Theme Name: New Belsat
+Theme URL:
+Description: New web page for Belsat redaction
+Version:1.0
+Author: Kris
+Author URI:
+Tags:
+Text Domain: belsat_news
+*/
+/*@border: 1px solid fade(@bordercolor, 15%);*/
+/*@invertborder: 1px solid fade(@background, 15%);*/
+
+/*
+.belinfo {
+	display: block;
+	min-height: 200px;
+	background: red;
+	color: white;
+	font-size: 1.5em;
+}*/
+
+/* css for current language menu item */
+.menu-item-language-current a {
+    color: #f4661f !important;
+    font-weight: bold;
+}
+
+/* gravity forms hide previous button */
+.gform_wrapper .gform_page_footer .button.gform_previous_button {
+        display: none !important;
+}
+
+.fb_iframe_widget iframe {
+	position: relative !important;
+}
+
+#wpadminbar {
+	top: auto !important;
+	bottom: 0;
+}
+#wpadminbar * {
+	bottom: 100%;
+}

@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "lacinka extension",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Cyrillic to latinic belarusian traspiler",
+    "description": "The description of the application"
+  }
+}
